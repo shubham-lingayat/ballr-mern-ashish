@@ -9,7 +9,12 @@ dotenv.config(); //loads data from your .env.
 const app = express();  //initilise express server
 
 
-app.use(cors()); // allow request from any domain
+// Allow only your frontend URL
+app.use(cors({
+  origin: 'https://ballr-table-booking.vercel.app',
+  credentials: true // if you're using cookies or HTTP auth
+}));
+
 app.use(express.json()); // parser incomming json request
 
 
