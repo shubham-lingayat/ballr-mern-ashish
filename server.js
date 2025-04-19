@@ -15,10 +15,7 @@ app.use(express.json()); // parser incomming json request
 
 // MongoDB Connection
 // connect your DB and fetch url from.env file
-mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(process.env.MONGO_URL)
 // logs success or error message
 .then(() => console.log("✅ MongoDB connected"))
 .catch((err) => console.error("❌ DB Connection Error:", err));
@@ -236,6 +233,10 @@ app.delete("/delete-booking/:bookingId", async (req, res) => {
       message: "Internal server error"
     });
   }
+});
+
+app.get("/", (req, res) => {
+  res.send("Server is up and running!");
 });
 
 
